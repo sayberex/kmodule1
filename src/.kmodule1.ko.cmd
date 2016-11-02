@@ -1,0 +1,1 @@
+cmd_/home/lamer/workspace/kmodule1/src/kmodule1.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-3.16.0-4-common/scripts/module-common.lds --build-id  -o /home/lamer/workspace/kmodule1/src/kmodule1.ko /home/lamer/workspace/kmodule1/src/kmodule1.o /home/lamer/workspace/kmodule1/src/kmodule1.mod.o
