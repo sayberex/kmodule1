@@ -29,22 +29,22 @@
 #include	<linux/fcntl.h>
 #include	<asm/uaccess.h>
 
-static struct timer_list	tm_stat;
+static struct timer_list	tm_stat;					//timer struct
 
-struct	file	*filp;
-mm_segment_t	old_fs;
-loff_t			pos = 0;
+struct	file	*filp;									//file descriptor
+mm_segment_t	old_fs;									//fs usr addr space holder
+loff_t			pos = 0;								//initial offset for f I/O operation
 
-static unsigned long	isfileopened = 0;
+static unsigned long	isfileopened = 0;				//is pipe opened flag
 
-#define	BUF_SIZE	64
-char	buf[BUF_SIZE];
-int		buf_len;
+#define	BUF_SIZE	64									//buffer size
+char	buf[BUF_SIZE];									//buffer for print operations
+int		buf_len;										//actual string length in buffer
 
 
-void enum_netdev(void);
+void enum_netdev(void);									//enumerate network interfaces and print statistics
 
-int snprintf(char *buf, size_t size, const char *fmt, ...) {
+int snprintf(char *buf, size_t size, const char *fmt, ...) {	//not used
 	va_list	args;
 	int	i;
 
@@ -55,7 +55,7 @@ int snprintf(char *buf, size_t size, const char *fmt, ...) {
 }
 
 
-void	fnlog(char *format, ...) {
+void	fnlog(char *format, ...) {						//easy print to pipe function
 	va_list args;
 	int i;
 
@@ -117,12 +117,8 @@ void enum_netdev(void) {
 
 	dev = first_net_device(&init_net);
 	while(dev) {
-		//dev->stats.rx_bytes
-		//dev->stats.tx_bytes
-		//dev->stats.rx_packets
-		//dev->stats.tx_packets
 
-
+		//print network statistic  to /var/log/message
 		printk(KERN_INFO"%s statistic",dev->name);
 		printk(KERN_INFO"tx packets = %d\n", (int)(dev->stats.tx_packets));
 		printk(KERN_INFO"rx packets = %d\n", (int)(dev->stats.tx_packets));
@@ -130,7 +126,7 @@ void enum_netdev(void) {
 		printk(KERN_INFO"rx bytes = %d\n",   (int)(dev->stats.rx_bytes));
 
 
-
+		//print network statistics to pipe
 		fnlog("%s statistic\n", dev->name);
 		fnlog("TX PACKETS = %lu\n", dev->stats.tx_packets);
 		fnlog("RX PACKETS = %lu\n", dev->stats.rx_packets);
@@ -145,12 +141,11 @@ void enum_netdev(void) {
 		}*/
 
 
-		dev = next_net_device(dev);
-
+		dev = next_net_device(dev);		//get next network interface
 	}
 }
 
-void init_fio(void) {
+void init_fio(void) {					//init file operations
 	//http://benninger.ca/posts/writing-to-a-file-from-the-kernel/
 	//*****************************************************************
 	//struct	file	*filp;
@@ -161,7 +156,7 @@ void init_fio(void) {
 	old_fs = get_fs();
 	set_fs(get_ds());
 
-	filp = filp_open("/tmp/pipe_name", O_NONBLOCK|O_WRONLY|O_CREAT, 0777);
+	filp = filp_open("/tmp/pipe_name", O_WRONLY/*|O_CREAT*/, 0777);
 
 	if ((IS_ERR(filp)) )
 		printk(KERN_INFO"Can't open file");
@@ -179,7 +174,7 @@ void init_fio(void) {
 	//*****************************************************************
 }
 
-void deinit_fio(void) {
+void deinit_fio(void) {					//deinit file operations
 	if (filp) filp_close(filp, NULL);
 	set_fs(old_fs);
 }
