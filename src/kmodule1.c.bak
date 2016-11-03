@@ -57,11 +57,8 @@ int snprintf(char *buf, size_t size, const char *fmt, ...) {
 
 void	fnlog(char *format, ...) {
 	va_list args;
-	int i;
 
 	if (isfileopened) {
-		for (i = 0;i < BUF_SIZE; i++) buf[i] = 0;
-
 		va_start(args,format);
 		buf_len = vsnprintf(buf, BUF_SIZE, format, args);
 		if (buf_len != -1) vfs_write(filp, buf, buf_len, &pos);
@@ -86,15 +83,12 @@ void fnCb_tm_stat(unsigned long data) {
 			vfs_write(filp, buf, buf_len, &pos);
 	}*/
 
-	/*fnlog("data %lu\n", counter++);
-	fnlog("data %lu\n", counter++);
-	fnlog("data %lu\n", counter++);
-	fnlog("data %lu\n", counter++);*/
+	//fnlog("data %lu\n", counter++);
 
 	enum_netdev();
 
 
-	mod_timer(&tm_stat, jiffies + msecs_to_jiffies(1000));		//set timer timeout
+	mod_timer(&tm_stat, jiffies + msecs_to_jiffies(5000));		//set timer timeout
 
 
 }
@@ -128,14 +122,14 @@ void enum_netdev(void) {
 		printk(KERN_INFO"rx packets = %d\n", (int)(dev->stats.tx_packets));
 		printk(KERN_INFO"tx bytes = %d\n",   (int)(dev->stats.tx_bytes));
 		printk(KERN_INFO"rx bytes = %d\n",   (int)(dev->stats.rx_bytes));
-
+		dev = next_net_device(dev);
 
 
 		fnlog("%s statistic\n", dev->name);
 		fnlog("TX PACKETS = %lu\n", dev->stats.tx_packets);
-		fnlog("RX PACKETS = %lu\n", dev->stats.rx_packets);
-		fnlog("TX BYTES   = %lu\n", dev->stats.tx_bytes);
-		fnlog("RX BYTES   = %lu\n", dev->stats.rx_bytes);
+		//fnlog("RX PACKETS = %lu\n", dev->stats.rx_packets);
+		//fnlog("TX BYTES   = %lu\n", dev->stats.tx_bytes);
+		//fnlog("RX BYTES   = %lu\n", dev->stats.rx_bytes);
 
 
 		/*if (isfileopened) {
@@ -144,8 +138,6 @@ void enum_netdev(void) {
 				vfs_write(filp, buf, buf_len, &pos);
 		}*/
 
-
-		dev = next_net_device(dev);
 
 	}
 }
@@ -161,7 +153,7 @@ void init_fio(void) {
 	old_fs = get_fs();
 	set_fs(get_ds());
 
-	filp = filp_open("/tmp/pipe_name", O_NONBLOCK|O_WRONLY|O_CREAT, 0777);
+	filp = filp_open("/tmp/pipe_name", O_WRONLY|O_CREAT, 0777);
 
 	if ((IS_ERR(filp)) )
 		printk(KERN_INFO"Can't open file");
@@ -195,7 +187,7 @@ static int __init fninit(void) {
 
 	setup_timer(&tm_stat, fnCb_tm_stat, 0);								//init timer
 																		//jiffies - global tick counter
-	ret = mod_timer(&tm_stat, jiffies + msecs_to_jiffies(1000));		//set timer timeout
+	ret = mod_timer(&tm_stat, jiffies + msecs_to_jiffies(5000));		//set timer timeout
 	if (ret)	printk(KERN_INFO"mod_timer: can't set timeout");
 
 
