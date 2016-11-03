@@ -18,8 +18,18 @@ static const struct modversion_info ____versions[]
 __used
 __attribute__((section("__versions"))) = {
 	{ 0xc88913e2, __VMLINUX_SYMBOL_STR(module_layout) },
-	{ 0x50eedeb8, __VMLINUX_SYMBOL_STR(printk) },
+	{ 0xc996d097, __VMLINUX_SYMBOL_STR(del_timer) },
+	{ 0x593a99b, __VMLINUX_SYMBOL_STR(init_timer_key) },
+	{ 0x268cc6a2, __VMLINUX_SYMBOL_STR(sys_close) },
+	{ 0x810d5b30, __VMLINUX_SYMBOL_STR(fput) },
+	{ 0x865d3899, __VMLINUX_SYMBOL_STR(vfs_write) },
+	{ 0x9f03db5b, __VMLINUX_SYMBOL_STR(fget) },
+	{ 0xea011e5, __VMLINUX_SYMBOL_STR(kernel_stack) },
 	{ 0x6f985b97, __VMLINUX_SYMBOL_STR(init_net) },
+	{ 0x8834396c, __VMLINUX_SYMBOL_STR(mod_timer) },
+	{ 0x7d11c268, __VMLINUX_SYMBOL_STR(jiffies) },
+	{ 0x3bd1b1f6, __VMLINUX_SYMBOL_STR(msecs_to_jiffies) },
+	{ 0x50eedeb8, __VMLINUX_SYMBOL_STR(printk) },
 	{ 0xb4390f9a, __VMLINUX_SYMBOL_STR(mcount) },
 };
 

@@ -975,6 +975,66 @@ deps_/home/lamer/workspace/kmodule1/src/kmodule1.o := \
   /usr/src/linux-headers-3.16.0-4-common/include/uapi/linux/if_packet.h \
   /usr/src/linux-headers-3.16.0-4-common/include/linux/if_link.h \
   /usr/src/linux-headers-3.16.0-4-common/include/uapi/linux/if_link.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/syscalls.h \
+    $(wildcard include/config/ftrace/syscalls.h) \
+    $(wildcard include/config/old/sigsuspend.h) \
+    $(wildcard include/config/old/sigsuspend3.h) \
+    $(wildcard include/config/clone/backwards.h) \
+    $(wildcard include/config/clone/backwards3.h) \
+  /usr/src/linux-headers-3.16.0-4-common/include/uapi/linux/aio_abi.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/trace/syscall.h \
+    $(wildcard include/config/have/syscall/tracepoints.h) \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/tracepoint.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/ftrace_event.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/ring_buffer.h \
+    $(wildcard include/config/ring/buffer/allow/swap.h) \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/poll.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/uapi/linux/poll.h \
+  /usr/src/linux-headers-3.16.0-4-common/arch/x86/include/uapi/asm/poll.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/uapi/asm-generic/poll.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/trace_seq.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/perf_event.h \
+    $(wildcard include/config/have/hw/breakpoint.h) \
+    $(wildcard include/config/function/tracer.h) \
+    $(wildcard include/config/cpu/sup/intel.h) \
+  /usr/src/linux-headers-3.16.0-4-common/include/uapi/linux/perf_event.h \
+  /usr/src/linux-headers-3.16.0-4-common/arch/x86/include/asm/perf_event.h \
+    $(wildcard include/config/cpu/sup/amd.h) \
+  /usr/src/linux-headers-3.16.0-4-common/arch/x86/include/asm/stacktrace.h \
+    $(wildcard include/config/frame/pointer.h) \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/uaccess.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/ptrace.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/pid_namespace.h \
+    $(wildcard include/config/pid/ns.h) \
+  /usr/src/linux-headers-3.16.0-4-common/include/uapi/linux/ptrace.h \
+  /usr/src/linux-headers-3.16.0-4-common/arch/x86/include/asm/local64.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/asm-generic/local64.h \
+  /usr/src/linux-headers-3.16.0-4-common/arch/x86/include/asm/hw_breakpoint.h \
+  /usr/src/linux-headers-3.16.0-4-common/arch/x86/include/uapi/asm/hw_breakpoint.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/kdebug.h \
+  /usr/src/linux-headers-3.16.0-4-common/arch/x86/include/asm/kdebug.h \
+    $(wildcard include/config/kexec.h) \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/ftrace.h \
+    $(wildcard include/config/have/function/trace/mcount/test.h) \
+    $(wildcard include/config/dynamic/ftrace/with/regs.h) \
+    $(wildcard include/config/dynamic/ftrace.h) \
+    $(wildcard include/config/stack/tracer.h) \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/trace_clock.h \
+  /usr/src/linux-headers-3.16.0-4-common/arch/x86/include/asm/trace_clock.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/kallsyms.h \
+  /usr/src/linux-headers-3.16.0-4-common/arch/x86/include/asm/ftrace.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/cpu.h \
+    $(wildcard include/config/pm/sleep/smp.h) \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/node.h \
+    $(wildcard include/config/memory/hotplug/sparse.h) \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/irq_work.h \
+    $(wildcard include/config/irq/work.h) \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/jump_label_ratelimit.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/perf_regs.h \
+    $(wildcard include/config/have/perf/regs.h) \
+  /usr/src/linux-headers-3.16.0-4-common/arch/x86/include/uapi/asm/perf_regs.h \
+  /usr/src/linux-headers-3.16.0-4-common/arch/x86/include/asm/local.h \
+  /usr/src/linux-headers-3.16.0-4-common/include/linux/file.h \
 
 /home/lamer/workspace/kmodule1/src/kmodule1.o: $(deps_/home/lamer/workspace/kmodule1/src/kmodule1.o)
 
